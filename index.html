@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FNAF: Turno de Medianoche</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">FAZBEAR ENTERTAINMENT</p>
+      <h1>FNAF: <span>TURNO DE MEDIANOCHE</span></h1>
+    </div>
+    <div class="night-box">
+      <span>NOCHE</span>
+      <strong id="nightNumber">01</strong>
+    </div>
+  </header>
+
+  <main class="game-container">
+    <section class="status-bar">
+      <div><span class="small-label">NIVEL</span><strong id="levelName">FÁCIL</strong></div>
+      <div><span class="small-label">PREGUNTA</span><strong id="questionNumber">1 / 10</strong></div>
+      <div><span class="small-label">PUNTOS</span><strong id="score">0</strong></div>
+    </section>
+
+    <div class="progress-track"><div id="progressBar"></div></div>
+
+    <section class="main-layout">
+      <div class="left-column">
+        <section class="camera-panel">
+          <div class="panel-heading">
+            <span class="red-light"></span>
+            <h2>MONITOR DE SEGURIDAD</h2>
+            <span id="cameraCode">CAM 01</span>
+          </div>
+
+          <div class="camera-screen">
+            <img id="cameraImage" src="imagenes/pizzeria.png" alt="Vista de la cámara de seguridad">
+            <div class="camera-overlay"></div>
+            <div class="rec">● REC</div>
+            <div id="cameraName" class="camera-name">EXTERIOR</div>
+            <div class="camera-time" id="cameraTime">12:00 AM</div>
+          </div>
+
+          <div class="camera-buttons">
+            <button class="camera-button active" data-camera="0">CAM 01</button>
+            <button class="camera-button" data-camera="1">CAM 02</button>
+            <button class="camera-button" data-camera="2">CAM 03</button>
+            <button class="camera-button" data-camera="3">CAM 04</button>
+          </div>
+          <p class="camera-help">Selecciona una cámara para cambiar la vista.</p>
+        </section>
+
+        <section class="character-panel">
+          <div class="panel-heading">
+            <h2>PERSONAJE DETECTADO</h2>
+            <span class="live-label">EN VIVO</span>
+          </div>
+
+          <div class="character-content">
+            <div class="character-image-wrap">
+              <img id="characterImage" src="imagenes/freddy.png" alt="Personaje de FNAF">
+            </div>
+            <div class="character-info">
+              <p class="small-label">IDENTIFICACIÓN</p>
+              <h3 id="characterName">FREDDY FAZBEAR</h3>
+              <p id="characterDescription">El animatrónico principal de Freddy Fazbear's Pizza.</p>
+              <div class="danger-meter">
+                <span>PELIGRO</span>
+                <div class="danger-track"><div id="dangerBar"></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="right-column">
+        <section class="question-panel">
+          <div class="question-top">
+            <span class="question-tag">PRUEBA DE EMPLEADO</span>
+            <span id="difficultyTag">FÁCIL</span>
+          </div>
+
+          <h2 id="questionTitle">¿Estás preparado para el turno?</h2>
+          <p id="questionText">Demuestra cuánto sabes de Freddy Fazbear's Pizza.</p>
+
+          <div id="answers" class="answers">
+            <button id="startButton" class="answer-button start-button">COMENZAR TURNO</button>
+          </div>
+
+          <p id="feedback" class="feedback" aria-live="polite"></p>
+          <button id="nextButton" class="primary-button hidden">SIGUIENTE PREGUNTA →</button>
+        </section>
+
+        <section class="rules-panel">
+          <h3>PROTOCOLO DEL GUARDIA</h3>
+          <p>01. Observa las cámaras.</p>
+          <p>02. Responde correctamente.</p>
+          <p>03. Sobrevive a las tres pruebas.</p>
+          <p class="warning-text">NO TE QUEDES DORMIDO.</p>
+        </section>
+
+        <section class="score-panel">
+          <div><span class="small-label">RESPUESTAS CORRECTAS</span><strong id="correctCount">0</strong></div>
+          <div><span class="small-label">ERRORES</span><strong id="wrongCount">0</strong></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="endingScreen" class="ending-screen hidden">
+      <p class="eyebrow">FAZBEAR ENTERTAINMENT</p>
+      <h2 id="endingTitle">TURNO COMPLETADO</h2>
+      <p id="endingMessage"></p>
+
+      <div id="paycheck" class="paycheck hidden">
+        <p>FREDDY FAZBEAR'S PIZZA</p>
+        <h3>CHEQUE DE EMPLEADO</h3>
+        <div class="paycheck-line"><span>EMPLEADO</span><strong>GUARDIA NOCTURNO</strong></div>
+        <div class="paycheck-line"><span>SUELDO</span><strong>$120.00</strong></div>
+        <div class="paycheck-line"><span>ESTADO</span><strong>APROBADO</strong></div>
+        <h2>$120.00</h2>
+        <p class="legendary">TÍTULO: GUARDIA LEGENDARIO</p>
+      </div>
+
+      <button id="claimButton" class="primary-button hidden">COBRAR CHEQUE</button>
+      <button id="restartButton" class="primary-button hidden">JUGAR DE NUEVO</button>
+    </section>
+
+    <section id="jumpscare" class="jumpscare hidden">
+      <img id="jumpscareImage" src="imagenes/foxy.png" alt="Jumpscare">
+      <h2 id="jumpscareText">¡TE ENCONTRARON!</h2>
+      <p>FIN DEL TURNO</p>
+      <button id="jumpscareRestart" class="primary-button">VOLVER A INTENTAR</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>FAN GAME INSPIRADO EN FIVE NIGHTS AT FREDDY'S</p>
+    <p>Vigila las cámaras. Confía en tus conocimientos.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
