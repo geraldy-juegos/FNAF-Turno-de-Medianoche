@@ -130,18 +130,22 @@ const elements = {
 function connectImage(img, names, fallbackText) {
   if (!img) return;
 
-  const extensions = [".jpg", ".jpeg", ".png", ".webp"];
-  const paths = [];
+ 
+const extensions = [".jpg", ".jpeg", ".png", ".webp"];
+const paths = [];
 
-  names.forEach(name => {
-    paths.push("imagenes/" + name);
+names.forEach(name => {
+  paths.push(name);
 
-    if (!/\.(png|jpe?g|webp)$/i.test(name)) {
-      extensions.forEach(ext => paths.push("imagenes/" + name + ext));
-      paths.push("imagenes/" + name + ".png.jpg");
-      paths.push("imagenes/" + name + ".png.png");
-      paths.push("imagenes/" + name + ".png.webp");
-      paths.push("imagenes/" + name + ".jpeg.jpg");
+  if (!/\.(png|jpe?g|webp)$/i.test(name)) {
+    extensions.forEach(ext => paths.push(name + ext));
+    paths.push(name + ".png.jpg");
+    paths.push(name + ".png.png");
+    paths.push(name + ".png.webp");
+    paths.push(name + ".jpeg.jpg");
+  }
+});
+
     }
   });
 
