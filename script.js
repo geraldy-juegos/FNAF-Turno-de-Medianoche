@@ -130,22 +130,18 @@ const elements = {
 function connectImage(img, names, fallbackText) {
   if (!img) return;
 
- 
-const extensions = [".jpg", ".jpeg", ".png", ".webp"];
-const paths = [];
+  const extensions = [".jpg", ".jpeg", ".png", ".webp"];
+  const paths = [];
 
-names.forEach(name => {
-  paths.push(name);
+  names.forEach(name => {
+    paths.push(name);
 
-  if (!/\.(png|jpe?g|webp)$/i.test(name)) {
-    extensions.forEach(ext => paths.push(name + ext));
-    paths.push(name + ".png.jpg");
-    paths.push(name + ".png.png");
-    paths.push(name + ".png.webp");
-    paths.push(name + ".jpeg.jpg");
-  }
-});
-
+    if (!/\.(png|jpe?g|webp)$/i.test(name)) {
+      extensions.forEach(ext => paths.push(name + ext));
+      paths.push(name + ".png.jpg");
+      paths.push(name + ".png.png");
+      paths.push(name + ".png.webp");
+      paths.push(name + ".jpeg.jpg");
     }
   });
 
@@ -156,8 +152,7 @@ names.forEach(name => {
     if (index >= uniquePaths.length) {
       img.onerror = null;
       img.alt = fallbackText || "Imagen no encontrada";
-      img.style.opacity = "0.25";
-      console.warn("No se encontró la imagen. Se probaron:", uniquePaths);
+      console.warn("No se encontró la imagen:", uniquePaths);
       return;
     }
 
@@ -172,6 +167,7 @@ names.forEach(name => {
 
   tryNext();
 }
+
 
 function setCharacter(characterKey) {
   const character = characters[characterKey] || characters.freddy;
